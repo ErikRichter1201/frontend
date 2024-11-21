@@ -1,0 +1,41 @@
+/* StartPage.css */
+.start-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  .start-page h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .start-page p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .buttons-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .start-button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .start-button:hover {
+    background-color: #0056b3;
+  }
+  
