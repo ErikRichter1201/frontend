@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './RoomSelectionPage.css';
 
 export default function RoomSelectionPage() {
   const [rooms, setRooms] = useState([]);

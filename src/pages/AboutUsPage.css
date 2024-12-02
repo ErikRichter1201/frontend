@@ -1,0 +1,56 @@
+/* Allgemeines Styling */
+.about-us-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d1117, #161b22); /* Dunkle Blau-Grau-Töne */
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+}
+
+/* Card Styling */
+.card {
+  background: #1f2937; /* Dunkelgrauer Hintergrund */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  padding: 30px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Überschrift */
+.card h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #60a5fa; /* Helles Blau */
+}
+
+/* Text */
+.card p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+/* Button Container */
+.button-container {
+  margin-top: 20px;
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  text-decoration: none;
+  background: #2563eb; /* Blau */
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: #3b82f6; /* Hellblau beim Hover */
+}

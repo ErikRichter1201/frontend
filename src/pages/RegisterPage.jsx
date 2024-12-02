@@ -1,136 +1,88 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import './RegisterPage.css';
 
-const AuthPage = () => {
-  const [isRegistering, setIsRegistering] = useState(false); // Zustand für Login oder Register
-  const { register, handleSubmit } = useForm();
+const RegisterPage = () => {
   const navigate = useNavigate();
+  const { register, handleSubmit, setError, formState: { errors } } = useForm();
 
-  const onSubmitLogin = async (data) => {
-    // Hier API-Aufruf für Login einfügen
-    console.log("Login:", data);
-    navigate("/rooms"); // Weiterleitung zur nächsten Seite nach dem Login
+  // Passwortvalidierung (mindestens 6 Zeichen, Groß- und Kleinbuchstaben, Sonderzeichen)
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{6,}$/;
+    return passwordRegex.test(password);
   };
 
-  const onSubmitRegister = async (data) => {
-    // Hier API-Aufruf für Registrierung einfügen
-    console.log("Register:", data);
-    navigate("/login"); // Weiterleitung zur Login-Seite nach erfolgreicher Registrierung
+  const onSubmit = async (data) => {
+    if (!validatePassword(data.password)) {
+      setError("password", {
+        type: "manual",
+        message: "Das Passwort muss mindestens 6 Zeichen, einen Großbuchstaben, einen Kleinbuchstaben und ein Sonderzeichen enthalten.",
+      });
+      return;
+    }
+
+    if (data.password !== data.confirmPassword) {
+      setError("confirmPassword", {
+        type: "manual",
+        message: "Die Passwörter stimmen nicht überein.",
+      });
+      return;
+    }
+
+    console.log("Registrierung:", data);
+    // Nach erfolgreicher Registrierung kannst du den Benutzer weiterleiten
+    navigate("/danke");
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        backgroundColor: "#f9f9f9",
-      }}
-    >
-      <h2>{isRegistering ? "Registrierung" : "Anmeldung"}</h2>
-
-      <form
-        onSubmit={handleSubmit(isRegistering ? onSubmitRegister : onSubmitLogin)}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "300px",
-        }}
-      >
-        {/* E-Mail Eingabefeld nur bei Registrierung */}
-        {isRegistering && (
-          <input
-            {...register("email")}
-            type="email"
-            placeholder="E-Mail"
-            required
-            style={{
-              margin: "10px 0",
-              padding: "10px",
-              width: "100%",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}
-          />
-        )}
-
+    <div className="register-page">
+      <h2>Registrierung</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="register-form">
         <input
-          {...register("username")}
-          placeholder="Benutzername"
-          required
-          style={{
-            margin: "10px 0",
-            padding: "10px",
-            width: "100%",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
+          {...register("email", { required: "E-Mail ist erforderlich" })}
+          type="email"
+          placeholder="E-Mail"
+          className="input-field"
         />
+        {errors.email && <p className="error-message">{errors.email.message}</p>}
+
         <input
-          {...register("password")}
+          {...register("username", { required: "Benutzername ist erforderlich" })}
+          placeholder="Benutzername"
+          className="input-field"
+        />
+
+        <input
+          {...register("password", { required: "Passwort ist erforderlich" })}
           type="password"
           placeholder="Passwort"
-          required
-          style={{
-            margin: "10px 0",
-            padding: "10px",
-            width: "100%",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
+          className="input-field"
         />
-        {isRegistering && (
-          <input
-            {...register("confirmPassword")}
-            type="password"
-            placeholder="Passwort wiederholen"
-            required
-            style={{
-              margin: "10px 0",
-              padding: "10px",
-              width: "100%",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}
-          />
-        )}
-        <button
-          type="submit"
-          style={{
-            backgroundColor: "#007BFF",
-            color: "#fff",
-            border: "none",
-            padding: "10px 15px",
-            borderRadius: "5px",
-            cursor: "pointer",
-            marginTop: "10px",
-          }}
-        >
-          {isRegistering ? "Registrieren" : "Anmelden"}
-        </button>
+        
+        <input
+          {...register("confirmPassword", { required: "Passwortwiederholung ist erforderlich" })}
+          type="password"
+          placeholder="Passwort wiederholen"
+          className="input-field"
+        />
+
+        {errors.password && <p className="error-message">{errors.password.message}</p>}
+        {errors.confirmPassword && <p className="error-message">{errors.confirmPassword.message}</p>}
+
+        <button type="submit" className="submit-button">Registrieren</button>
       </form>
 
       <button
         type="button"
-        style={{
-          backgroundColor: "transparent",
-          color: "#007BFF",
-          border: "none",
-          padding: "10px 15px",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginTop: "10px",
-        }}
-        onClick={() => setIsRegistering(!isRegistering)} // Toggle zwischen Login und Register
+        className="back-button"
+        onClick={() => navigate("/login")}
       >
-        {isRegistering ? "Schon registriert? Anmelden" : "Noch keinen Account? Registrieren"}
+        Schon registriert? Anmelden
       </button>
     </div>
   );
 };
 
-export default AuthPage;
+export default RegisterPage;
+

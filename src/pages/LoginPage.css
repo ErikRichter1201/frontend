@@ -1,0 +1,142 @@
+/* Grundstil der Seite */
+.login-page {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Cyberpunk-Dunkel */
+    color: #d1f4ff; /* Helles Türkis */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+    overflow-x: hidden;
+    background-image: url("C:\Users\mobil\Desktop\neu\frontend\src\assets\logo1.jpg"); /* Dein Hintergrundbild */
+    background-size: cover;
+    background-position: 1px 1px;
+    overflow: hidden; /* Verhindert das Scrollen */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Überschrift */
+  .login-page h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 4px 8px rgba(0, 255, 255, 0.5);
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Lila-Blau-Farbverlauf */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textPulse 1.5s infinite ease-in-out;
+  }
+  
+  /* Formular */
+  .login-form {
+    background-color: rgba(0, 0, 50, 0.7);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  /* Eingabefelder */
+  .login-form input {
+    padding: 12px 1px;
+    font-size: 1rem;
+    border: 2px solid #2575fc; /* Blau */
+    border-radius: 25px;
+    outline: none;
+    background-color: rgba(0, 0, 50, 0.6);
+    color: #d1f4ff;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 0 5px rgba(37, 117, 252, 0.5);
+  }
+  
+  .login-form input:focus {
+    border-color: #6a11cb;
+    background-color: rgba(0, 0, 50, 0.9);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #6a11cb, 0 0 20px #2575fc;
+  }
+  
+  /* Login-Button */
+  .login-form button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* Dunkler Farbverlauf */
+    border: 2px solid #6a11cb;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 8px rgba(106, 17, 203, 0.8);
+    width: 100%;
+  }
+  
+  .login-form button:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb); /* Heller Farbverlauf */
+    transform: scale(1.1);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(106, 17, 203, 0.7);
+  }
+  
+  .login-form button:active {
+    transform: scale(0.95);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 10px rgba(37, 117, 252, 1);
+  }
+  
+  /* Zurück-Button */
+  .back-button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .back-button {
+    color: #2575fc;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  .back-button:hover {
+    color: #6a11cb;
+    text-shadow: 0 0 10px #6a11cb, 0 0 15px #2575fc;
+  }
+  
+  /* Animationen */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes textPulse {
+    0%, 100% {
+      text-shadow: 0 0 10px #2575fc, 0 0 20px #6a11cb;
+    }
+    50% {
+      text-shadow: 0 0 20px #6a11cb, 0 0 40px #2575fc;
+    }
+  }
+  
